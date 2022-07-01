@@ -1,0 +1,1 @@
+const fieldSize = 10;
