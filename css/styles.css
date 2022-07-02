@@ -6,10 +6,13 @@ body {
   font-family: monospace;
   text-align: center;
 }
-
+input {
+  margin: 3px;
+}
 .container {
   width: 70%;
   margin: 0 auto;
+  pointer-events: none;
 }
 
 .title {
