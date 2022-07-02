@@ -7,7 +7,7 @@ const generateField = () => {
 
     for (let colIndex = 0; colIndex < fieldSize; colIndex++) {
       const checkbox = document.createElement('input');
-      checkbox.type = 'checkbox';
+        checkbox.type = 'checkbox';
       row.appendChild(checkbox);
     }
     field.appendChild(row);
