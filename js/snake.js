@@ -51,10 +51,8 @@ function move() {
     snake.unshift(head);
     snake.pop();
     snake.forEach((snakePart) => {
-      console.log(...snakePart);
       checkItemAt(...snakePart);
     });
-    console.log(snake);
   }
 
   switch (movingDirection) {
@@ -72,8 +70,31 @@ function move() {
       break;
   }
 
-  updateSnake();
-  uncheckItemAt(...tail);
+  if (head[0] == foodPosition[0] && head[1] == foodPosition[1]) {
+    snake.push(tail);
+
+    removeFoodAt(...foodPosition);
+    foodPosition = getRandomPosition();
+    placeFoodAt(...foodPosition);
+
+    increaseScore();
+    updateSnake();
+  } else if (
+    getItemAt(...head).type == 'checkbox' &&
+    getItemAt(...head).checked
+  ) {
+    updateSnake()
+    document.querySelector('.title').innerText = 'Game Over';
+    document.querySelectorAll('input').forEach((input) => {
+      input.type = 'checkbox';
+      input.checked = false;
+      input.disabled = true;
+    });
+    clearInterval(moveInterval)
+  } else {
+    updateSnake();
+    uncheckItemAt(...tail);
+  }
 }
 
 function handleInput() {
@@ -92,8 +113,6 @@ function handleInput() {
         movingDirection = movingDirection === 'down' ? 'down' : 'up';
         break;
     }
-    console.log(movingDirection);
-
     if (!moveInterval) {
       moveInterval = setInterval(() => {
         move(movingDirection);
