@@ -80,8 +80,9 @@ function move() {
     increaseScore();
     updateSnake();
   } else if (
+    movingDirection &&
     getItemAt(...head).type == 'checkbox' &&
-    getItemAt(...head).checked
+    getItemAt(...head).checked 
   ) {
     updateSnake()
     document.querySelector('.title').innerText = 'Game Over';
@@ -91,7 +92,8 @@ function move() {
       input.disabled = true;
     });
     clearInterval(moveInterval)
-  } else {
+
+  } else if (movingDirection){
     updateSnake();
     uncheckItemAt(...tail);
   }
@@ -112,6 +114,7 @@ function handleInput() {
       case 'ArrowUp':
         movingDirection = movingDirection === 'down' ? 'down' : 'up';
         break;
+      default: break;
     }
     if (!moveInterval) {
       moveInterval = setInterval(() => {

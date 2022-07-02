@@ -9,13 +9,14 @@ body {
 input {
   margin: 3px;
 }
+
+h1{
+  margin-bottom: 40px;
+}
 .container {
   width: 70%;
   margin: 0 auto;
   pointer-events: none;
 }
 
-.title {
-  margin-top: 35px;
-}
 
